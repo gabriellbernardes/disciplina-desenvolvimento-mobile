@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.werk.R;
 import com.example.werk.data.EmpregadorDAO;
-import com.example.werk.data.EmpregadorDBMemory;
 import com.example.werk.model.Empregado;
 import com.example.werk.model.Empregador;
 
@@ -31,7 +30,7 @@ public class TelaUpdateEmpregador extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_empregado);
-        empregadorDAO = EmpregadorDBMemory.getInstance();
+//        empregadorDAO = EmpregadorDBMemory.getInstance();
         if(getIntent().getStringExtra("tipoUsuario").equals("Empregado")){
             empregado = (Empregado) getIntent().getSerializableExtra("usuario");
         }else if(getIntent().getStringExtra("tipoUsuario").equals("Empregador")){

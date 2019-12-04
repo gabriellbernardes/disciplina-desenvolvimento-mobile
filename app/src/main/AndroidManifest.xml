@@ -33,10 +33,12 @@
         <activity
             android:name=".telas.TelaCadastro" />
         <activity
-            android:name=".telas.TelaEntrar" />
+            android:name=".telas.TelaEntrar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".main.MainActivity" />
+        </activity>
+
         <activity
             android:name=".telas.DescricaoTrabalho" />
         <activity

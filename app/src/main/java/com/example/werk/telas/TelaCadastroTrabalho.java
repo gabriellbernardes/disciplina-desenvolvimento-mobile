@@ -13,9 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.werk.R;
 import com.example.werk.data.EmpregadoDAO;
-import com.example.werk.data.EmpregadoDBMemory;
 import com.example.werk.data.EmpregadorDAO;
-import com.example.werk.data.EmpregadorDBMemory;
 import com.example.werk.data.SolicitacaoDAO;
 import com.example.werk.data.SolicitacaoDBMemory;
 import com.example.werk.data.TrabalhoDAO;
@@ -60,9 +58,9 @@ public class TelaCadastroTrabalho extends AppCompatActivity{
         setContentView(R.layout.activity_cadastrar_trabalho);
 
         trabalhoDAO = TrabalhoDBMemory.getInstance();
-        empregadorDAO = EmpregadorDBMemory.getInstance();
+//        empregadorDAO = EmpregadorDBMemory.getInstance();
         tipo = findViewById(R.id.tipoTrabalho1Text);
-        empregadoDAO = EmpregadoDBMemory.getInstance();
+//        empregadoDAO = EmpregadoDBMemory.getInstance();
         solicitacaoDAO = SolicitacaoDBMemory.getInstance();
         pagamento = findViewById(R.id.pagamento1Text);
         descricao = findViewById(R.id.descricaoTrabalho1Text);

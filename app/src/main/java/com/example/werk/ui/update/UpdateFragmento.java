@@ -15,32 +15,30 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.werk.R;
 import com.example.werk.data.EmpregadoDAO;
-import com.example.werk.data.EmpregadoDBMemory;
 import com.example.werk.data.EmpregadorDAO;
-import com.example.werk.data.EmpregadorDBMemory;
 import com.example.werk.model.Empregado;
 import com.example.werk.model.Empregador;
 
 public class UpdateFragmento extends Fragment {
-    RadioGroup rgSexo;
+    private RadioGroup rgSexo;
     RadioButton rbSexo;
-    EditText nome;
-    EditText endereco;
-    EditText telefone;
-    EditText dataNascimento;
-    String generoEmpregado = "Masculino";
-    String generoEmpregador = "Masculino";
-    EmpregadoDAO empregadoDAO;
-    EmpregadorDAO empregadorDAO;
-    Empregado empregado;
-    Empregador empregador;
+    private EditText nome;
+    private EditText endereco;
+    private EditText telefone;
+    private EditText dataNascimento;
+    private String generoEmpregado = "Masculino";
+    private String generoEmpregador = "Masculino";
+    private EmpregadoDAO empregadoDAO;
+    private EmpregadorDAO empregadorDAO;
+    private Empregado empregado;
+    private Empregador empregador;
     private UpdateViewModel updateViewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        empregadoDAO = EmpregadoDBMemory.getInstance();
-        empregadorDAO = EmpregadorDBMemory.getInstance();
+//        empregadoDAO = EmpregadoDBMemory.getInstance();
+//        empregadorDAO = EmpregadorDBMemory.getInstance();
         View root = null;
         if(getActivity().getIntent().getStringExtra("tipoUsuario").equals("Empregado")) {
             updateViewModel = ViewModelProviders.of(this).get(UpdateViewModel.class);

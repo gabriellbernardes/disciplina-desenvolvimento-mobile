@@ -18,6 +18,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.werk.R;
+import com.example.werk.main.MainActivity;
 import com.example.werk.model.Empregado;
 import com.example.werk.model.Empregador;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -102,7 +103,7 @@ public class MenuInfoActivity extends AppCompatActivity {
             startActivity(intent);
 
         }else if(empregador != null){
-             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }
     }
@@ -111,7 +112,7 @@ public class MenuInfoActivity extends AppCompatActivity {
     private void verifyAuthentication(){
 
         if(FirebaseAuth.getInstance().getUid()==null){
-            Intent intent = new Intent(MenuInfoActivity.this, TelaEntrar.class);
+            Intent intent = new Intent(MenuInfoActivity.this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }else{
@@ -166,6 +167,6 @@ public class MenuInfoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    }
+
 
 }

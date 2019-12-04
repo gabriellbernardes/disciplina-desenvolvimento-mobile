@@ -84,21 +84,20 @@ public class EmpregadorFragment extends Fragment {
                         cpfEmpregador.isEmpty() || cpfEmpregador == null || cpfEmpregador.length() != 11
                         || senhaEmpregador.length() < 6) {
 
+                    if (senhaEmpregador.length() < 6) {
+                        Toast.makeText(v.getContext(), "senha deve ter pelo menos 6 caracteres", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     if (cpfEmpregador.length() != 11) {
                         Toast.makeText(v.getContext(), "Cpf Invalido", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
-                    if (senhaEmpregador.length() < 6) {
-                        Toast.makeText(v.getContext(), "senha deve ter pelo menos 6 caracteres", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
 
                     Toast.makeText(v.getContext(), "Preencha os campos corretamentes", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-//                Empregador empregador = new Empregador(null, -1, cpfEmpregador, emailEmpregador, generoEmpregador, telefoneEmpregador, nascimentoEmpregador, nomeEmpregador, senhaEmpregador, enderecoEmpregador, new ArrayList<Trabalho>());
 
 
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(emailEmpregador, senhaEmpregador)
@@ -140,17 +139,3 @@ public class EmpregadorFragment extends Fragment {
     }
 }
 
-
-//  FirebaseFirestore.getInstance().collection("empregadores").add(empregador)
-//          .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//
-//@Override
-//public void onSuccess(DocumentReference documentReference) {
-//        Log.i("Teste", documentReference.getId());
-//        }
-//        }).addOnFailureListener(new OnFailureListener() {
-//@Override
-//public void onFailure(@NonNull Exception e) {
-//        Log.i("Teste", e.getMessage());
-//        }
-//        });
