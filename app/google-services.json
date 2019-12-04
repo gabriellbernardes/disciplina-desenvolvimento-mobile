@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "624958749918",
+    "firebase_url": "https://werk-b2beb.firebaseio.com",
+    "project_id": "werk-b2beb",
+    "storage_bucket": "werk-b2beb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624958749918:android:6b2491ad433358909f164f",
+        "android_client_info": {
+          "package_name": "com.example.werk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624958749918-j8uuqohmthmfqd1a9it2ro6kjh5q099s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUMdHSbBbK9chEp-WOxwqxs50YWcaIYjY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624958749918-j8uuqohmthmfqd1a9it2ro6kjh5q099s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

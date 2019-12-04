@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#CAAF8688"
+        tools:context=".telas.Empregador">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#00DF1313"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/player"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:background="#FC2424"
+                            android:gravity="center"
+                            android:text="Cadastro Trabalho"
+                            android:textColor="#FFFFFF"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:translationX="0dp"
+                            android:visibility="visible" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <EditText
+                                android:id="@+id/tipoTrabalho1Text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/ic_person_outline_black_24dp"
+                                android:drawablePadding="20dp"
+                                android:ems="10"
+                                android:hint="Tipo do Trabalho" />
+
+                            <EditText
+                                android:id="@+id/pagamento1Text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/cpf_24dp"
+                                android:drawablePadding="20dp"
+                                android:ems="10"
+                                android:hint="Pagamento"
+                                android:inputType="number" />
+
+
+                            <EditText
+                                android:id="@+id/descricaoTrabalho1Text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/ic_announcement_black_24dp"
+                                android:drawablePadding="20dp"
+                                android:ems="10"
+                                android:hint="Descrição do Trabalho" />
+
+                            <EditText
+                                android:id="@+id/contato1Text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/telefone_24dp"
+                                android:drawablePadding="20dp"
+                                android:ems="10"
+                                android:hint="Contato"
+                                android:inputType="numberPassword|phone" />
+
+                            <EditText
+                                android:id="@+id/endereco1Text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/local_24dp"
+                                android:drawablePadding="20dp"
+                                android:ems="10"
+                                android:hint="Endereço"
+                                android:inputType="text" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+
+                        <Button
+                            android:id="@+id/cadastrar"
+                            style="@android:style/Widget.Material.Light.Button.Inset"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="adicionarTrabalho"
+                            android:text="Cadastrar"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:typeface="normal"
+                            tools:targetApi="lollipop"></Button>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </FrameLayout>
+</LinearLayout>
