@@ -190,8 +190,16 @@ public class Empregador implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(uuid);
-        dest.writeString(nome);
         dest.writeString(idFoto);
+        dest.writeString(uuid);
+        dest.writeString(genero);
+        dest.writeString(telefone);
+        dest.writeString(dataNascimento);
+        dest.writeString(nome);
+        dest.writeString(senha);
+        dest.writeString(cpf);
+        dest.writeString(endereco);
+        dest.writeString(email);
+        dest.writeInt(avaliacao);
     }
 }

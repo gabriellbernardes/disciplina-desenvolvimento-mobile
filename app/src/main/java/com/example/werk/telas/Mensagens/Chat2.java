@@ -35,22 +35,29 @@ import com.xwray.groupie.ViewHolder;
 
 import java.util.List;
 
-public class Chat extends AppCompatActivity {
+public class Chat2 extends AppCompatActivity {
 
     private GroupAdapter adapter;
     Empregado empregado;
     Empregador empregador;
     EditText editText;
+    String tipo = "empregado";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-
+//        if (tipo.contains("empregador")) {
+//            empregado = getIntent().getExtras().getParcelable("empregado");
+//            getSupportActionBar().setTitle(empregado.getNome());
+//        }else{
         empregador = getIntent().getExtras().getParcelable("empregador");
+        empregado = getIntent().getExtras().getParcelable("empregado");
 
+        Log.i("teste", (empregado == null)+"");
         getSupportActionBar().setTitle(empregador.getNome());
+//        }
 
         RecyclerView rv = findViewById(R.id.recyclerMensagens);
         editText = findViewById(R.id.chatText);
@@ -72,6 +79,7 @@ public class Chat extends AppCompatActivity {
     }
 
     private void mensagens(){
+//        if(tipo.contains("empregador")){
         FirebaseFirestore.getInstance().collection("empregados")
                 .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .get()
@@ -87,10 +95,53 @@ public class Chat extends AppCompatActivity {
 
             }
         });
+//        }else{
+//            FirebaseFirestore.getInstance().collection("empregados")
+//                    .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                    .get()
+//                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                        @Override
+//                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                            empregado = documentSnapshot.toObject(Empregado.class);
+//                            fechMensagens();
+//                        }
+//                    }).addOnFailureListener(new OnFailureListener() {
+//                @Override
+//                public void onFailure(@NonNull Exception e) {
 //
+//                }
+//            });
+//        }
     }
 
     private void fechMensagens() {
+//        if(empregador != null && tipo.contains("empregador")){
+//            String toID = empregado.getUuid();
+//            String fromId = empregador.getUuid();
+//
+//            FirebaseFirestore.getInstance().collection("conversas")
+//                    .document(fromId)
+//                    .collection(toID)
+////                    .orderBy("timestamp", Query.Direction.ASCENDING)
+//                    .addSnapshotListener(new EventListener<QuerySnapshot>() {
+//                        @Override
+//                        public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+//
+//                            List<DocumentChange> documentChanges = queryDocumentSnapshots.getDocumentChanges();
+//
+//                            if(documentChanges != null){
+//                                for (DocumentChange doc: documentChanges) {
+//                                    if(doc.getType() == DocumentChange.Type.ADDED){
+//
+//                                        Menssagem m = doc.getDocument().toObject(Menssagem.class);
+//
+//                                        adapter.add(new MessagemItem(m));
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    });
+//        }else if(empregado != null && tipo.contains("empregado")){
         String toID = empregador.getUuid();
         String fromId = FirebaseAuth.getInstance().getUid();
         FirebaseFirestore.getInstance().collection("conversas")
@@ -100,10 +151,13 @@ public class Chat extends AppCompatActivity {
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+
+                        assert queryDocumentSnapshots != null;
                         List<DocumentChange> documentChanges = queryDocumentSnapshots.getDocumentChanges();
 
                         for (DocumentChange doc : documentChanges) {
                             if (doc.getType() == DocumentChange.Type.ADDED) {
+
                                 Menssagem m = doc.getDocument().toObject(Menssagem.class);
                                 adapter.add(new MessagemItem(m));
                             }
@@ -116,6 +170,79 @@ public class Chat extends AppCompatActivity {
 
     private void enviarMenssagem() {
 
+
+//        if(tipo.contains("empregador")) {
+//            String text = editText.getText().toString();
+//            editText.setText(null);
+//
+//            final String fomId = FirebaseAuth.getInstance().getUid();
+//            final String toId = empregado.getUuid();
+//
+//
+//            long time = System.currentTimeMillis();
+//
+//            final Menssagem menssagem = new Menssagem();
+//            menssagem.setFomId(fomId);
+//            menssagem.setToId(toId);
+//            menssagem.setTimeStamp(time);
+//            menssagem.setMensagem(text);
+//
+//            if (!menssagem.getMensagem().isEmpty()) {
+//
+//                FirebaseFirestore.getInstance().collection("conversas")
+//                        .document(fomId)
+//                        .collection(toId)
+//                        .add(menssagem)
+//                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                            @Override
+//                            public void onSuccess(DocumentReference documentReference) {
+//                                Contato c = new Contato();
+//                                c.setId(toId);
+//                                c.setEmail(empregado.getNome());
+//                                c.setIdfoto(empregado.getIdFoto());
+//                                c.setTempo(menssagem.getTimeStamp());
+//                                c.setUltimamensagem(menssagem.getMensagem());
+//                                FirebaseFirestore.getInstance()
+//                                        .collection("ultima-mensagem")
+//                                        .document(toId)
+//                                        .collection("empregado").document(fomId)
+//                                        .set(c);
+//                            }
+//                        }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.e("test", e.getMessage(), e);
+//                    }
+//                });
+//
+//                FirebaseFirestore.getInstance().collection("conversas")
+//                        .document(toId)
+//                        .collection(fomId)
+//                        .add(menssagem)
+//                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                            @Override
+//                            public void onSuccess(DocumentReference documentReference) {
+//                                Contato c = new Contato();
+//                                c.setId(toId);
+//                                c.setEmail(empregado.getNome());
+//                                c.setIdfoto(empregado.getIdFoto());
+//                                c.setTempo(menssagem.getTimeStamp());
+//                                c.setUltimamensagem(menssagem.getMensagem());
+//
+//                                FirebaseFirestore.getInstance()
+//                                        .collection("ultima-mensagem")
+//                                        .document(fomId)
+//                                        .collection("empregador").document(toId)
+//                                        .set(c);
+//                            }
+//                        }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.e("test", e.getMessage(), e);
+//                    }
+//                });
+//            }
+//        }else{
         String text = editText.getText().toString();
         editText.setText(null);
 
@@ -149,7 +276,7 @@ public class Chat extends AppCompatActivity {
                             FirebaseFirestore.getInstance()
                                     .collection("ultima-mensagem")
                                     .document(toId)
-                                    .collection("empregador").document(fomId)
+                                    .collection("empregado").document(fomId)
                                     .set(c);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -199,10 +326,12 @@ public class Chat extends AppCompatActivity {
 
         @Override
         public void bind(@NonNull ViewHolder viewHolder, int position) {
+            TextView nome = viewHolder.itemView.findViewById(R.id.nameItem);
             TextView texto = viewHolder.itemView.findViewById(R.id.text_item);
             ImageView image = viewHolder.itemView.findViewById(R.id.avatar);
 
             texto.setText(menssagem.getMensagem());
+            nome.setText(empregador.getNome());
 //            Picasso.get().load(user.getProfileUrl()).into(image);
         }
 
