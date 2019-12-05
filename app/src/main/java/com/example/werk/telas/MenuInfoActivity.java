@@ -40,6 +40,7 @@ public class MenuInfoActivity extends AppCompatActivity {
     NavigationView navigationView;
     Empregado empregado;
     Empregador empregador;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +50,9 @@ public class MenuInfoActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
-        if(empregado != null){
+        if (empregado != null) {
             fab.hide();
-        }else if(empregador != null){
+        } else if (empregador != null) {
             fab.show();
         }
 
@@ -89,7 +90,7 @@ public class MenuInfoActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onSupportNavigateUp(){
+    public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
@@ -98,50 +99,50 @@ public class MenuInfoActivity extends AppCompatActivity {
     public void transf(View v) {
         final Intent intent = new Intent(this, TelaCadastroTrabalho.class);
 
-        if(empregado != null) {
+        if (empregado != null) {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
 
-        }else if(empregador != null){
+        } else if (empregador != null) {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }
     }
 
 
-    private void verifyAuthentication(){
+    private void verifyAuthentication() {
 
-        if(FirebaseAuth.getInstance().getUid()==null){
+        if (FirebaseAuth.getInstance().getUid() == null) {
             Intent intent = new Intent(MenuInfoActivity.this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-        }else{
-            if((FirebaseFirestore.getInstance().collection("empregados").document(FirebaseAuth.getInstance().getUid())) != null) {
+        } else {
+            if ((FirebaseFirestore.getInstance().collection("empregados").document(FirebaseAuth.getInstance().getUid())) != null) {
                 FirebaseFirestore.getInstance().collection("empregados").addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e){
-                        if(e != null){
+                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                        if (e != null) {
                             Log.e("Teste", e.getMessage(), e);
                             return;
                         }
                         List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
-                        for(DocumentSnapshot doc: docs){
+                        for (DocumentSnapshot doc : docs) {
                             empregado = doc.toObject(Empregado.class);
                             Log.d("Teste", empregado.toString());
                         }
                     }
                 });
                 //document(FirebaseAuth.getInstance().getUid());
-            }else if((FirebaseFirestore.getInstance().collection("empregadores").document(FirebaseAuth.getInstance().getUid())) != null){
+            } else if ((FirebaseFirestore.getInstance().collection("empregadores").document(FirebaseAuth.getInstance().getUid())) != null) {
                 FirebaseFirestore.getInstance().collection("empregadores").addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e){
-                        if(e != null){
+                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                        if (e != null) {
                             Log.e("Teste", e.getMessage(), e);
                             return;
                         }
                         List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
-                        for(DocumentSnapshot doc: docs){
+                        for (DocumentSnapshot doc : docs) {
                             empregador = doc.toObject(Empregador.class);
                             Log.d("Teste", empregador.toString());
                         }
@@ -153,7 +154,7 @@ public class MenuInfoActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.deslogar:
                 FirebaseAuth.getInstance().signOut();
                 verifyAuthentication();
@@ -163,10 +164,11 @@ public class MenuInfoActivity extends AppCompatActivity {
 //                startActivity(i);
                 break;
 
-        };
+        }
+        ;
         return super.onOptionsItemSelected(item);
     }
-
-
-
 }
+
+
+

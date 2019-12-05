@@ -44,8 +44,9 @@
         <activity
             android:name=".telas.TelaCadastroTrabalho" />
         <activity
-            android:name=".main.MainActivity">
-
+            android:name=".main.MainActivity"/>
+        <activity
+            android:name=".telas.TelaTrabalhos">
         </activity>
     </application>
 

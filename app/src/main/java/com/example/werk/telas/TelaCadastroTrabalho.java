@@ -77,7 +77,6 @@ public class TelaCadastroTrabalho extends AppCompatActivity{
 
 
     public void adicionarTrabalho(View view){
-        final Empregador[] empregadorr = {null};
         String tipoTrabalho = tipo.getText().toString();
         String pagamentoTrabalho = pagamento.getText().toString();
         String descricaoTrabalho = descricao.getText().toString();
@@ -110,7 +109,7 @@ public class TelaCadastroTrabalho extends AppCompatActivity{
                     for(DocumentSnapshot doc : docs){
                         empregador = doc.toObject(Empregador.class);
                         if(empregador.getUuid().equals(FirebaseAuth.getInstance().getUid())){
-                            empregadorr[0] = empregador;
+                            //empregadorr[0] = empregador;
                             solicitacao = new Solicitacao(FirebaseFirestore.getInstance().collection("solicitacoes").document().getId(), String.valueOf(solicitacaoDAO.getListaSolicitacoes().size()+1), empregador, 0, trabalho);
                             solicitacaoDAO.addSolicitacao(solicitacao);
                             //
