@@ -66,8 +66,11 @@ public class Home2Fragmento  extends Fragment {
                 List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
                 for(DocumentSnapshot doc : docs){
                     solicitacao = doc.toObject(Solicitacao.class);
-                    solicitacoes.add(solicitacao);
+                    if(solicitacao.getStatus()==0){
+                        solicitacoes.add(solicitacao);
                         Log.d("Teste", solicitacao.toString());
+                    }
+
                     }
                 mAdapter = new LineAdapter(solicitacoes);
                 mAdapter.setTipoTela("Vagas");
