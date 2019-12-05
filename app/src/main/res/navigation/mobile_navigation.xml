@@ -11,16 +11,12 @@
         android:label="Werk"
         tools:layout="@layout/fragment_home" />
 
-    <fragment
-        android:id="@+id/chat"
-        android:name="com.example.werk.ui.chat.ChatFragmento"
-        android:label="@string/menu_chat"
-        tools:layout="@layout/fragment_chat" />
+
     <fragment
         android:id="@+id/config"
-        android:name="com.example.werk.ui.chat.ChatFragmento"
+        android:name="com.example.werk.ui.config.ConfigFragmento"
         android:label="@string/menu_config"
-        tools:layout="@layout/fragment_chat" />
+        tools:layout="@layout/fragment_config" />
     <fragment
         android:id="@+id/update"
         android:name="com.example.werk.ui.update.UpdateFragmento"

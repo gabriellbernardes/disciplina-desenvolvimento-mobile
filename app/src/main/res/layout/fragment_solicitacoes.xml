@@ -31,7 +31,7 @@
                 android:scaleType="centerInside" />
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/nameItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/avatar"
@@ -41,11 +41,11 @@
                 android:text="Rose" />
 
             <TextView
-                android:id="@+id/message_body"
+                android:id="@+id/text-Item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/name"
-                android:layout_alignLeft="@+id/name"
+                android:layout_below="@+id/nameItem"
+                android:layout_alignLeft="@+id/nameItem"
                 android:background="@drawable/their_message"
                 android:elevation="2dp"
                 android:paddingHorizontal="16dp"

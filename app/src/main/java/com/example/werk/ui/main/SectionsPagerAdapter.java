@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.werk.ui.chat.ChatFragmento;
 import com.example.werk.ui.home.Home2Fragmento;
 
 /**
@@ -26,11 +25,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Fragment fragment = null;
-        if(position == 0){
             fragment = new Home2Fragmento();
-        }else if(position == 1){
-            fragment = new ChatFragmento();
-        }
+
         return fragment;
     }
 
