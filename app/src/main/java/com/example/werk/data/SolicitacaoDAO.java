@@ -5,10 +5,10 @@ import com.example.werk.model.Solicitacao;
 import java.util.ArrayList;
 
 public interface SolicitacaoDAO {
-    public void addSolicitacao(Solicitacao solicitacao);
-    public void editSolicitacao(Solicitacao solicitacao);
-    public void deleteSolicitacao(String solicitacaoID);
-    public Solicitacao getSolicitacao(String solicitacaoID);
-    public ArrayList<Solicitacao> getListaSolicitacoes();
-    public void aceitarSolicitacao(Solicitacao solicitacao);
+    void addSolicitacao(Solicitacao solicitacao);
+    void editSolicitacao(Solicitacao solicitacao);
+    void deleteSolicitacao(String solicitacaoID);
+    Solicitacao getSolicitacao(String solicitacaoID);
+    ArrayList<Solicitacao> getListaSolicitacoes();
+    void aceitarSolicitacao(Solicitacao solicitacao);
 }

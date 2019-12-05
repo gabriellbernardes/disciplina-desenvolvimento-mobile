@@ -56,12 +56,12 @@ public class EmpregadorFragment extends Fragment {
         dataNascimento = view.findViewById(R.id.nascimento2Text);
         cpf = view.findViewById(R.id.pagamento1Text);
 
-        final RadioGroup rgSexo = (RadioGroup) view.findViewById(R.id.generoEmp2);
+        final RadioGroup rgSexo = view.findViewById(R.id.generoEmp2);
 
         rgSexo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton rbSexo = (RadioButton) group.findViewById(checkedId);
+                RadioButton rbSexo = group.findViewById(checkedId);
                 generoEmpregador = rbSexo.getText().toString();
             }
         });

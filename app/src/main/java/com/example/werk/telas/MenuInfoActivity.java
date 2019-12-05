@@ -63,9 +63,9 @@ public class MenuInfoActivity extends AppCompatActivity {
 
             }
         });
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
 
@@ -167,7 +167,6 @@ public class MenuInfoActivity extends AppCompatActivity {
                 break;
 
         }
-        ;
         return super.onOptionsItemSelected(item);
     }
 }

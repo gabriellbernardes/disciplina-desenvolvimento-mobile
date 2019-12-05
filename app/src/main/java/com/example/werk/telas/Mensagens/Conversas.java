@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,20 +43,25 @@ public class Conversas extends AppCompatActivity {
         adapter = new GroupAdapter();
         rv.setAdapter(adapter);
         rv.setLayoutManager(new LinearLayoutManager(this));
+        if(FirebaseFirestore.getInstance().collection("empregadores").document(id).get() != null){
+            verifica = 1;
+        }
+        else if(FirebaseFirestore.getInstance().collection("empregados").document(id).get() != null){
+            verifica = 2;
 
-        adapter.setOnItemClickListener(new OnItemClickListener() {
+        }else{
+            Toast.makeText(this, "Erro", Toast.LENGTH_SHORT);
+        }
+            adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull Item item, @NonNull View view) {
                 Intent i = new Intent(Conversas.this, Chat.class);
-
-                if(FirebaseFirestore.getInstance().collection("empregadores").document(id).get().getResult()!= null){
-                    verifica = 1;
+                if(verifica == 1){
                     ConversaItem2 conversa = (ConversaItem2) item;
                     i.putExtra("empregador", conversa.empregador);
                     i.putExtra("tipo", "empregador");
                     startActivity(i);
-                }else{
-                    verifica = 2;
+                }else if(verifica == 2){
                     ConversaItem1 conversa = (ConversaItem1) item;
                     i.putExtra("empregado", conversa.empregado);
                     i.putExtra("tipo", "empregado");
@@ -118,9 +124,11 @@ public class Conversas extends AppCompatActivity {
         @Override
         public void bind(@NonNull ViewHolder viewHolder, int position) {
             TextView txtUsername = viewHolder.itemView.findViewById(R.id.nom_conversa);
+            TextView txtEmail = viewHolder.itemView.findViewById(R.id.ultima_conversa);
             ImageView image = viewHolder.itemView.findViewById(R.id.foto_conversa);
 
             txtUsername.setText(empregado.getNome());
+            txtEmail.setText(empregado.getEmail());
 //            Picasso.get()
 //                    .load(empregado.getIdFoto())
 //                    .into(image);
@@ -143,8 +151,11 @@ public class Conversas extends AppCompatActivity {
         public void bind(@NonNull ViewHolder viewHolder, int position) {
             TextView txtUsername = viewHolder.itemView.findViewById(R.id.nom_conversa);
             ImageView image = viewHolder.itemView.findViewById(R.id.foto_conversa);
+            TextView txtEmail = viewHolder.itemView.findViewById(R.id.ultima_conversa);
 
             txtUsername.setText(empregador.getNome());
+            txtEmail.setText(empregador.getEmail());
+
 //            Picasso.get()
 //                    .load(empregador.getIdFoto())
 //                    .into(image);

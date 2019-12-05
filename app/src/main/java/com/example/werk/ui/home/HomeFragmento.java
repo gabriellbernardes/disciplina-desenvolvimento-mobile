@@ -30,10 +30,10 @@ public class HomeFragmento extends Fragment {
 
             View view = inflater.inflate(R.layout.fixtures_new_tabs,container, false);
             // Setting ViewPager for each Tabs
-            ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
+            ViewPager viewPager = view.findViewById(R.id.view_pager);
             setupViewPager(viewPager);
             // Set Tabs inside Toolbar
-            TabLayout tabs = (TabLayout) view.findViewById(R.id.tabs);
+            TabLayout tabs = view.findViewById(R.id.tabs);
             tabs.setupWithViewPager(viewPager);
 
             //if(this.getActivity().getIntent().getStringExtra("tipoUsuario").equals("Empregado")) {

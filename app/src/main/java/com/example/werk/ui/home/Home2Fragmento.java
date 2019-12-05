@@ -54,7 +54,7 @@ public class Home2Fragmento  extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.lista_vagas, container, false);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
-        mRecyclerView = (RecyclerView) root.findViewById(R.id.recycler_view_layour_recycler2);
+        mRecyclerView = root.findViewById(R.id.recycler_view_layour_recycler2);
         mRecyclerView.setLayoutManager(layoutManager);
         FirebaseFirestore.getInstance().collection("solicitacoes").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
