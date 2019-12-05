@@ -73,7 +73,7 @@ public class MenuInfoActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.home, R.id.config)
+                R.id.home, R.id.map)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -168,6 +168,10 @@ public class MenuInfoActivity extends AppCompatActivity {
             case R.id.mensagens:
                 Intent i = new Intent(this, Conversas.class);
                 startActivity(i);
+                break;
+            case R.id.mapa:
+                Intent intent = new Intent(this, MapsActivity.class);
+                startActivity(intent);
                 break;
 
         }

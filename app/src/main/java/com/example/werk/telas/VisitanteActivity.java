@@ -23,11 +23,7 @@ public class VisitanteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visitante);
-        if(getIntent().getStringExtra("tipoUsuario").equals("Empregado")){
-            Empregado empregado = (Empregado) getIntent().getSerializableExtra("usuario");
-        }else if(getIntent().getStringExtra("tipoUsuario").equals("Empregador")){
-            Empregador empregador = (Empregador) getIntent().getSerializableExtra("usuario");
-        }
+
 //        HomeFragmento hf = new HomeFragmento();
 //
 //

@@ -10,9 +10,9 @@
             android:icon="@drawable/home"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/config"
-            android:icon="@drawable/config"
-            android:title="@string/menu_config" />
+            android:id="@+id/mapas"
+            android:icon="@android:drawable/ic_menu_mapmode"
+            android:title="Mapa" />
         <item
             android:id="@+id/update"
             android:icon="@drawable/ic_autorenew_black_24dp"
