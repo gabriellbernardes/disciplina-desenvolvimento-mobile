@@ -5,10 +5,10 @@ import com.example.werk.model.Empregado;
 import java.util.ArrayList;
 
 public interface EmpregadoDAO {
-    public void addEmpregado(Empregado empregado);
-    public void editEmpregado(Empregado empregado);
-    public void deleteEmpregado(Empregado empregado);
-    public Empregado getEmpregado(String empregadoEmail);
-    public Empregado login(String empregadoEmail, String empregadoSenha);
-    public ArrayList<Empregado> getListaEmpregados();
+    void addEmpregado(Empregado empregado);
+    void editEmpregado(Empregado empregado);
+    void deleteEmpregado(Empregado empregado);
+    Empregado getEmpregado(String empregadoEmail);
+    Empregado login(String empregadoEmail, String empregadoSenha);
+    ArrayList<Empregado> getListaEmpregados();
 }

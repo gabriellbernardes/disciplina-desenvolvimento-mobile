@@ -41,7 +41,7 @@ public class Chat extends AppCompatActivity {
     Empregado empregado;
     Empregador empregador;
     EditText editText;
-    String tipo = getIntent().getExtras().getString("tipo");
+    String tipo = "empregado";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class Chat extends AppCompatActivity {
             empregado = getIntent().getExtras().getParcelable("empregado");
             getSupportActionBar().setTitle(empregado.getNome());
         }else{
-            empregado = getIntent().getExtras().getParcelable("empregador");
+            empregador = getIntent().getExtras().getParcelable("empregador");
             getSupportActionBar().setTitle(empregador.getNome());
         }
 

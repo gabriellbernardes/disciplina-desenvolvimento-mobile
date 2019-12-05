@@ -37,7 +37,7 @@ public class TelaCadastro extends AppCompatActivity {
 
     public void onRadioButtonClicked(View view) {
 
-        rbTipoConta = (RadioButton) findViewById( rgTipoConta.getCheckedRadioButtonId() );
+        rbTipoConta = findViewById( rgTipoConta.getCheckedRadioButtonId() );
 
         Toast.makeText(this, "Tipo cadastro: "+ rbTipoConta.getText().toString(), Toast.LENGTH_SHORT).show();
 

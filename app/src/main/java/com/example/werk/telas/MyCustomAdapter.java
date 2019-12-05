@@ -73,7 +73,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
             //ctivity a = view.getContext().startActivity(view.);
             //Intent intent = Intent.getIntent();
             //Handle TextView and display string from your list
-            TextView listItemText = (TextView)view.findViewById(R.id.list_item_string);
+            TextView listItemText = view.findViewById(R.id.list_item_string);
             listItemText.setText(list.get(position));
             //Toast.makeText(view.getContext(), String.valueOf(list.get(position)), Toast.LENGTH_SHORT).show();
             s = list.get(position);
@@ -100,9 +100,9 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
 
 
             //Handle buttons and add onClickListeners
-            Button deleteBtn = (Button)view.findViewById(R.id.delete_btn);
+            Button deleteBtn = view.findViewById(R.id.delete_btn);
 
-            Button addBtn = (Button)view.findViewById(R.id.add_btn);
+            Button addBtn = view.findViewById(R.id.add_btn);
             //Toast.makeText(view.getContext(), tipoUsuario, Toast.LENGTH_SHORT).show();
                 if(tipoUsuario.equals("Empregador_Solicitacoes")){
                     deleteBtn.setVisibility(View.VISIBLE);

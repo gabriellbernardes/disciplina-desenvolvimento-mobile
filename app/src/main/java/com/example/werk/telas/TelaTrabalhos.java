@@ -51,7 +51,7 @@ public class TelaTrabalhos extends Fragment {
    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.lista_solicitacoes, container, false);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
-        mRecyclerView = (RecyclerView) root.findViewById(R.id.recycler_view_layour_recycler);
+        mRecyclerView = root.findViewById(R.id.recycler_view_layour_recycler);
         mRecyclerView.setLayoutManager(layoutManager);
         FirebaseFirestore.getInstance().collection("solicitacoes").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override

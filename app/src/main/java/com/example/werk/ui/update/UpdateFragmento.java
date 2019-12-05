@@ -53,16 +53,16 @@ public class UpdateFragmento extends Fragment {
         telefone = root.findViewById(R.id.contato1Text);
         dataNascimento = root.findViewById(R.id.nascimento2Text);
         rgSexo = root.findViewById(R.id.generoEmp2);
-        final RadioGroup rgSexo = (RadioGroup) root.findViewById(R.id.generoEmp2);
+        final RadioGroup rgSexo = root.findViewById(R.id.generoEmp2);
         rgSexo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton rbSexo = (RadioButton) group.findViewById(checkedId);
+                RadioButton rbSexo = group.findViewById(checkedId);
                 generoEmpregador = rbSexo.getText().toString();
                 generoEmpregado = rbSexo.getText().toString();
             }
         });
-        Button button = (Button) root.findViewById(R.id.cadastrar);
+        Button button = root.findViewById(R.id.cadastrar);
         button.setOnClickListener(new View.OnClickListener()
         {
             @Override
