@@ -63,16 +63,19 @@ public class TelaTrabalhos extends Fragment {
                 List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
                 for(DocumentSnapshot doc : docs){
                     solicitacao = doc.toObject(Solicitacao.class);
-                    if(solicitacao.getEmpregado()==null){
-                        if(FirebaseAuth.getInstance().getUid() == solicitacao.getEmpregador().getUuid()){
+                    if (FirebaseAuth.getInstance().getUid() == null) {
+
+                    }else if(solicitacao.getEmpregado()==null){
+                        if(FirebaseAuth.getInstance().getUid().equals(solicitacao.getEmpregador().getUuid())){
                             solicitacoes.add(solicitacao);
                         }
-                    }else if(FirebaseAuth.getInstance().getUid().equals(solicitacao.getEmpregado().getUuid()) || (FirebaseAuth.getInstance().getUid() == solicitacao.getEmpregador().getUuid())){
+                    }else if(FirebaseAuth.getInstance().getUid().equals(solicitacao.getEmpregado().getUuid()) || (FirebaseAuth.getInstance().getUid().equals(solicitacao.getEmpregador().getUuid()))){
                         solicitacoes.add(solicitacao);
                         Log.d("Teste", solicitacao.toString());
                     }
                 }
                 mAdapter = new LineAdapter(solicitacoes);
+                mAdapter.setTipoTela("Solicitações");
                 mRecyclerView.setAdapter(mAdapter);
                 Log.d("Teste", mAdapter.toString());
             }

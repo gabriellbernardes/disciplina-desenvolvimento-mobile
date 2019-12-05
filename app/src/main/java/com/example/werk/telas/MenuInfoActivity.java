@@ -41,7 +41,7 @@ public class MenuInfoActivity extends AppCompatActivity {
     NavigationView navigationView;
     Empregado empregado;
     Empregador empregador;
-
+    FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,12 +50,8 @@ public class MenuInfoActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        if (empregado != null) {
-            fab.hide();
-        } else if (empregador != null) {
-            fab.show();
-        }
+        fab = findViewById(R.id.fab);
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +106,6 @@ public class MenuInfoActivity extends AppCompatActivity {
         }
     }
 
-
     private void verifyAuthentication() {
 
         if (FirebaseAuth.getInstance().getUid() == null) {
@@ -118,7 +113,7 @@ public class MenuInfoActivity extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         } else {
-            if ((FirebaseFirestore.getInstance().collection("empregados").document(FirebaseAuth.getInstance().getUid())) != null) {
+            if ((FirebaseFirestore.getInstance().collection("empregados").document(FirebaseAuth.getInstance().getUid()))!= null){
                 FirebaseFirestore.getInstance().collection("empregados").addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -129,12 +124,15 @@ public class MenuInfoActivity extends AppCompatActivity {
                         List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
                         for (DocumentSnapshot doc : docs) {
                             empregado = doc.toObject(Empregado.class);
-                            Log.d("Teste", empregado.toString());
+                            if(FirebaseAuth.getInstance().getUid().equals(empregado.getUuid())) {
+                                fab.hide();
+                                Log.d("Teste", empregado.toString());
+                            }
                         }
                     }
                 });
                 //document(FirebaseAuth.getInstance().getUid());
-            } else if ((FirebaseFirestore.getInstance().collection("empregadores").document(FirebaseAuth.getInstance().getUid())) != null) {
+            }else if ((FirebaseFirestore.getInstance().collection("empregadores").document(FirebaseAuth.getInstance().getUid())) != null) {
                 FirebaseFirestore.getInstance().collection("empregadores").addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -145,7 +143,10 @@ public class MenuInfoActivity extends AppCompatActivity {
                         List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
                         for (DocumentSnapshot doc : docs) {
                             empregador = doc.toObject(Empregador.class);
-                            Log.d("Teste", empregador.toString());
+                            if(FirebaseAuth.getInstance().getUid().equals(empregador.getUuid())) {
+                                fab.show();
+                                Log.d("Teste", empregador.toString());
+                            }
                         }
                     }
                 });

@@ -70,6 +70,7 @@ public class Home2Fragmento  extends Fragment {
                         Log.d("Teste", solicitacao.toString());
                     }
                 mAdapter = new LineAdapter(solicitacoes);
+                mAdapter.setTipoTela("Vagas");
                 mRecyclerView.setAdapter(mAdapter);
                 Log.d("Teste", mAdapter.toString());
             }
