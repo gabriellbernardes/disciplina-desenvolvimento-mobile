@@ -85,19 +85,21 @@ public class TelaCadastroTrabalho extends AppCompatActivity{
         id = trabalhoDAO.getListaTrabalhos().size()+1;
         String idTrabalho = String.valueOf(id);
         //FirebaseFirestore.getInstance().collection("trabalhos").document().getId();
-        final Trabalho trabalho = new Trabalho(FirebaseFirestore.getInstance().collection("trabalhos").document().getId(),idTrabalho, tipoTrabalho, pagamentoTrabalho, descricaoTrabalho, contatoTrabalho, enderecoTrabalho);
-        FirebaseFirestore.getInstance().collection("trabalhos").add(trabalho)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.i("Teste", documentReference.getId());
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
+        DocumentReference documento1 = FirebaseFirestore.getInstance().collection("trabalhos").document();
+        final Trabalho trabalho = new Trabalho(documento1.getId(),idTrabalho, tipoTrabalho, pagamentoTrabalho, descricaoTrabalho, contatoTrabalho, enderecoTrabalho);
+        FirebaseFirestore.getInstance().collection("trabalhos").document(documento1.getId())
+                .set(trabalho).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("Teste", "Sucesso");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.i("Teste", e.getMessage());
+                Log.e("Teste" , e.getMessage(), e);
             }
         });
+
             FirebaseFirestore.getInstance().collection("empregadores").addSnapshotListener(new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -110,7 +112,9 @@ public class TelaCadastroTrabalho extends AppCompatActivity{
                         empregador = doc.toObject(Empregador.class);
                         if(empregador.getUuid().equals(FirebaseAuth.getInstance().getUid())){
                             //empregadorr[0] = empregador;
-                            solicitacao = new Solicitacao(FirebaseFirestore.getInstance().collection("solicitacoes").document().getId(), String.valueOf(solicitacaoDAO.getListaSolicitacoes().size()+1), empregador, 0, trabalho);
+                            DocumentReference documento = FirebaseFirestore.getInstance().collection("solicitacoes").document();
+                            Log.d("Teste", documento.getId());
+                            solicitacao = new Solicitacao(documento.getId(), String.valueOf(solicitacaoDAO.getListaSolicitacoes().size()+1), empregador, 0, trabalho);
                             solicitacaoDAO.addSolicitacao(solicitacao);
                             //
                             Log.d("Teste", empregador.toString());

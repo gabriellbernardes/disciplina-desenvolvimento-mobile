@@ -53,8 +53,8 @@ public class TelaUpdateEmpregado extends AppCompatActivity {
         String telefoneEmpregado = telefone.getText().toString();
         String nascimentoEmpregado = dataNascimento.getText().toString();
 
-        //Empregado empregado1 = new Empregado(uuid, empregado.getEmail(), generoEmpregado, telefoneEmpregado, nascimentoEmpregado, nomeEmpregado, empregado.getSenha(), enderecoEmpregado, empregado.getAvaliacao(), empregado.getTrabalhos());
-
+        Empregado empregado1 = new Empregado("", empregado.getEmail(), generoEmpregado, telefoneEmpregado, nascimentoEmpregado, nomeEmpregado, empregado.getSenha(), enderecoEmpregado, empregado.getAvaliacao(), empregado.getTrabalhos());
+        empregadoDAO.editEmpregado(empregado1);
         //empregadoDAO.editEmpregado(empregado1);
         //getIntent().putExtra("usuario", empregado);
         if(empregadoDAO != null){

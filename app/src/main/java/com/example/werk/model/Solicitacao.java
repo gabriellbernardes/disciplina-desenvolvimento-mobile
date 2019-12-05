@@ -68,6 +68,7 @@ public class Solicitacao {
     public String toString() {
         return "Solicitacao{" +
                 "id="+id+
+                ", uuid="+uuid+
                 ", empregado=" + empregado +
                 ", empregador=" + empregador +
                 ", status=" + status +

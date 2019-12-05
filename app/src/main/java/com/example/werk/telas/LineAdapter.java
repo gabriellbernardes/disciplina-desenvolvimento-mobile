@@ -55,23 +55,46 @@ public class LineAdapter extends RecyclerView.Adapter<LineHolder> {
 
 
     private void updateItem(int position) {
-        Solicitacao userModel = mUsers.get(position);
+        final Solicitacao userModel = mUsers.get(position);
         userModel.setStatus(userModel.getStatus()+1);
 
-        FirebaseFirestore.getInstance().collection("solicitacoes").document(userModel.getUuid()).update("status", userModel.getStatus()+1).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Log.d("Teste", "DocumentSnapshot successfully written!");
-            }
-        })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("Teste", "Error writing document", e);
+            FirebaseFirestore.getInstance().collection("empregados").addSnapshotListener(new EventListener<QuerySnapshot>() {
+                @Override
+                public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                    if (e != null) {
+                        Log.e("Teste", e.getMessage(), e);
+                        return;
                     }
-                });
+                    List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
+                    for (DocumentSnapshot doc : docs) {
+                        empregado = doc.toObject(Empregado.class);
+                        if(FirebaseAuth.getInstance().getUid().equals(empregado.getUuid()) && userModel.getEmpregado() == null) {
+                            if (userModel.getEmpregado() == null) {
+                                userModel.setEmpregado(empregado);
+                                FirebaseFirestore.getInstance().collection("solicitacoes").document(userModel.getUuid()).update("status", userModel.getStatus(), "empregado", empregado).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d("Teste", "DocumentSnapshot successfully written!");
+                                    }
+                                })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w("Teste", "Error writing document", e);
+                                            }
+                                        });
+                                Log.d("Teste", empregado.toString());
+                            }
+                        }else{
+                            FirebaseFirestore.getInstance().collection("solicitacoes").document(userModel.getUuid()).update("status", userModel.getStatus());
+                    }
+                }
+            }
+            });
+            //document(FirebaseAuth.getInstance().getUid());
 
-        notifyItemChanged(position);
+        notifyDataSetChanged();
+        //notifyItemChanged(position);
     }
 
     private void removerItem(int position) {
@@ -130,8 +153,8 @@ public class LineAdapter extends RecyclerView.Adapter<LineHolder> {
                     empregado = doc.toObject(Empregado.class);
                     if(FirebaseAuth.getInstance().getUid().equals(empregado.getUuid())) {
                         if (mUsers.get(position).getEmpregado() != null) {
-                            if ((mUsers.get(position).getEmpregado().getUuid().equals(empregador.getUuid()))) {
-                                if (mUsers.get(position).getStatus() == 1) {
+                            if ((mUsers.get(position).getEmpregado().getUuid().equals(empregado.getUuid()))) {
+                                if (mUsers.get(position).getStatus() >= 1) {
                                     holder.deleteButton.setVisibility(View.GONE);
                                     holder.moreButton.setVisibility(View.GONE);
                                 } else {

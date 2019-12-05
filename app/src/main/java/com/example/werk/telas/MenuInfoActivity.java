@@ -44,13 +44,16 @@ public class MenuInfoActivity extends AppCompatActivity {
     FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        verifyAuthentication();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_info);
-        verifyAuthentication();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         fab = findViewById(R.id.fab);
+
+
+
 
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +116,7 @@ public class MenuInfoActivity extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         } else {
-            if ((FirebaseFirestore.getInstance().collection("empregados").document(FirebaseAuth.getInstance().getUid()))!= null){
+            if((FirebaseFirestore.getInstance().collection("empregados").document(FirebaseAuth.getInstance().getUid()))!= null){
                 FirebaseFirestore.getInstance().collection("empregados").addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -132,7 +135,7 @@ public class MenuInfoActivity extends AppCompatActivity {
                     }
                 });
                 //document(FirebaseAuth.getInstance().getUid());
-            }else if ((FirebaseFirestore.getInstance().collection("empregadores").document(FirebaseAuth.getInstance().getUid())) != null) {
+            }else if((FirebaseFirestore.getInstance().collection("empregadores").document(FirebaseAuth.getInstance().getUid()))!= null){
                 FirebaseFirestore.getInstance().collection("empregadores").addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -143,8 +146,9 @@ public class MenuInfoActivity extends AppCompatActivity {
                         List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
                         for (DocumentSnapshot doc : docs) {
                             empregador = doc.toObject(Empregador.class);
-                            if(FirebaseAuth.getInstance().getUid().equals(empregador.getUuid())) {
-                                fab.show();
+                            Log.d("Teste", empregador.getUuid());
+                            if(FirebaseAuth.getInstance().getUid().equals(empregador.getUuid())){
+                                fab.hide();
                                 Log.d("Teste", empregador.toString());
                             }
                         }

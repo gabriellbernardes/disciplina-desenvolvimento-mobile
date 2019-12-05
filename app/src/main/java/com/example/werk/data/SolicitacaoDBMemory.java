@@ -43,21 +43,25 @@ public class SolicitacaoDBMemory implements SolicitacaoDAO{
             }
         }
     }
-    public void addSolicitacao(Solicitacao solicitacao){
-        FirebaseFirestore.getInstance().collection("solicitacoes").add(solicitacao)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+    public void addSolicitacao(Solicitacao solicitacao) {
+         Log.d("Teste", solicitacao.getUuid());
+
+        FirebaseFirestore.getInstance().collection("solicitacoes").document(solicitacao.getUuid()).set(solicitacao)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.i("Teste", documentReference.getId());
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Teste", "Sucesso");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.i("Teste", e.getMessage());
+                Log.e("Teste", e.getMessage(), e);
             }
         });
     }
-    @Override
+
+
+        @Override
     public void deleteSolicitacao(String solicitacaoId) {
 
         for(int i = 0; i < listaSolicitacoes.size(); i++){
