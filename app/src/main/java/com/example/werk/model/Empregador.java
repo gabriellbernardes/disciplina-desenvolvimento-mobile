@@ -1,14 +1,14 @@
 package com.example.werk.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
-public class Empregador {
+public class Empregador implements Parcelable {
     public Empregador() {
     }
 
-    public String getUuid() {
-        return uuid;
-    }
 
     private String idFoto;
     private String uuid;
@@ -35,6 +35,25 @@ public class Empregador {
         this.senha = senha;
         this.endereco = endereco;
         this.trabalhos = trabalhos;
+    }
+
+    protected Empregador(Parcel in) {
+        idFoto = in.readString();
+        uuid = in.readString();
+        genero = in.readString();
+        telefone = in.readString();
+        dataNascimento = in.readString();
+        nome = in.readString();
+        senha = in.readString();
+        endereco = in.readString();
+        email = in.readString();
+        cpf = in.readString();
+        avaliacao = in.readInt();
+    }
+
+
+    public String getUuid() {
+        return uuid;
     }
 
     public String getIdFoto() {
@@ -150,5 +169,29 @@ public class Empregador {
                 ", senha='" + senha + '\'' +
                 ", endereco='" + endereco + '\'' +
                 '}';
+    }
+
+    public static final Creator<Empregador> CREATOR = new Creator<Empregador>() {
+        @Override
+        public Empregador createFromParcel(Parcel in) {
+            return new Empregador(in);
+        }
+
+        @Override
+        public Empregador[] newArray(int size) {
+            return new Empregador[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(uuid);
+        dest.writeString(nome);
+        dest.writeString(idFoto);
     }
 }

@@ -21,6 +21,7 @@ import com.example.werk.R;
 import com.example.werk.main.MainActivity;
 import com.example.werk.model.Empregado;
 import com.example.werk.model.Empregador;
+import com.example.werk.telas.Mensagens.Conversas;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -73,7 +74,7 @@ public class MenuInfoActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.home, R.id.chat, R.id.config)
+                R.id.home, R.id.config)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -159,9 +160,9 @@ public class MenuInfoActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 verifyAuthentication();
                 break;
-            case R.id.pesquisar:
-//                Intent i = new Intent(Menssagem_Tela.this, Contatos.class);
-//                startActivity(i);
+            case R.id.mensagens:
+                Intent i = new Intent(this, Conversas.class);
+                startActivity(i);
                 break;
 
         }
